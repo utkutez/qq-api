@@ -16,6 +16,7 @@ app.put('/live', (req, res) => {
   }
   
   // Sadece "live" olan maçları filtreleyelim
+  // Gelen verideki tarih veya diğer alanlarda hiçbir dönüşüm yapılmaz, olduğu gibi kaydedilir.
   const validGames = games.filter(game => game.status === 'live');
   liveMatches = validGames;
   console.log(`Güncellenen canlı maç sayısı: ${liveMatches.length}`);
@@ -38,6 +39,7 @@ app.put('/upcoming', (req, res) => {
   }
   
   // Sadece "upcoming" olan maçları filtreleyelim
+  // Gelen verideki tarih veya diğer alanlarda herhangi bir dönüşüm yapılmaz, olduğu gibi kaydedilir.
   const validGames = games.filter(game => game.status === 'upcoming');
   upcomingMatches = validGames;
   console.log(`Güncellenen upcoming maç sayısı: ${upcomingMatches.length}`);
