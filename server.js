@@ -6,13 +6,18 @@ app.use(express.json());
 
 // MongoDB bağlantısı için URI (Cluster "QQ")
 const uri = "mongodb+srv://utkutez:Utk3131!!@qq.lctss.mongodb.net/?retryWrites=true&w=majority&appName=QQ";
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+
+// MongoDB'ye bağlanma
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, connectTimeoutMS: 30000 })
   .then(() => {
     console.log('MongoDB connected');
   })
   .catch(err => {
     console.error('MongoDB connection error:', err);
   });
+
+// Veritabanı adı "Matches" olarak belirtiyoruz
+const db = mongoose.connection.useDb('Matches');
 
 // Maç verilerini temsil edecek Mongoose şemaları
 const matchSchema = new mongoose.Schema({
@@ -21,9 +26,10 @@ const matchSchema = new mongoose.Schema({
   data: { type: Object, required: true }
 });
 
-const Live = mongoose.model('Live', matchSchema);
-const Upcoming = mongoose.model('Upcoming', matchSchema);
-const Ended = mongoose.model('Ended', matchSchema);
+// Koleksiyonları, "Matches" veritabanı altındaki koleksiyonlar olarak tanımlıyoruz.
+const Live = db.model('Live', matchSchema);
+const Upcoming = db.model('Upcoming', matchSchema);
+const Ended = db.model('Ended', matchSchema);
 
 // PUT endpoint: /live
 // Gelen live maç verilerini günceller; DB'de Live koleksiyonunda olan ve yeni listede bulunmayan maçlar Ended koleksiyonuna taşınır.
