@@ -10,11 +10,6 @@ let upcomingMatches = [];
 // PUT endpoint: /live 
 // Sadece status değeri "live" olan maç verilerini güncellemek için
 app.put('/live', (req, res) => {
-  const qqesportsKey = req.header('qqesports-key');
-  if (qqesportsKey !== '123') {
-    return res.status(401).json({ error: 'Yetkisiz erişim' });
-  }
-  
   const games = req.body;
   if (!Array.isArray(games)) {
     return res.status(400).json({ error: 'Veri, maç bilgilerini içeren bir dizi olmalıdır.' });
@@ -37,11 +32,6 @@ app.get('/live', (req, res) => {
 // PUT endpoint: /upcoming 
 // Sadece status değeri "upcoming" olan maç verilerini güncellemek için
 app.put('/upcoming', (req, res) => {
-  const qqesportsKey = req.header('qqesports-key');
-  if (qqesportsKey !== '123') {
-    return res.status(401).json({ error: 'Yetkisiz erişim' });
-  }
-  
   const games = req.body;
   if (!Array.isArray(games)) {
     return res.status(400).json({ error: 'Veri, maç bilgilerini içeren bir dizi olmalıdır.' });
