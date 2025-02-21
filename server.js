@@ -24,9 +24,9 @@ app.put('/live', (req, res) => {
 });
 
 // GET endpoint: /live
-// Güncel canlı maç verilerini döner
+// Güncel canlı maç verilerini direkt dizi olarak döner
 app.get('/live', (req, res) => {
-  res.json({ liveMatches });
+  res.json(liveMatches);
 });
 
 // PUT endpoint: /upcoming 
@@ -46,9 +46,9 @@ app.put('/upcoming', (req, res) => {
 });
 
 // GET endpoint: /upcoming
-// Güncel upcoming maç verilerini döner
+// Güncel upcoming maç verilerini direkt dizi olarak döner
 app.get('/upcoming', (req, res) => {
-  res.json({ upcomingMatches });
+  res.json(upcomingMatches);
 });
 
 const PORT = process.env.PORT || 7000;
