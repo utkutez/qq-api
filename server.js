@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 // MongoDB bağlantısı için URI (Cluster "QQ")
-const uri = "mongodb+srv://utkutez:Utk3131!!@qq.lctss.mongodb.net/Matches?retryWrites=true&w=majority&appName=QQ";
+const uri = "mongodb+srv://utkutez:Utk3131!!@qq.lctss.mongodb.net/?retryWrites=true&w=majority&appName=QQ";
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('MongoDB connected');
