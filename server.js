@@ -5,15 +5,15 @@ const app = express();
 app.use(express.json());
 
 // MongoDB bağlantısı için URI (Cluster "QQ")
-const uri = "mongodb+srv://utkutez:Utk3131!!@qq.lctss.mongodb.net/?retryWrites=true&w=majority&appName=QQ";
+const uri = "mongodb+srv://utkutez:Utk3131@qq.lctss.mongodb.net/?retryWrites=true&w=majority&appName=QQ";
 
 // MongoDB'ye bağlanma
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, connectTimeoutMS: 30000 })
   .then(() => {
-    console.log('MongoDB connected');
+    console.log('MongoDB bağlantısı başarılı');
   })
   .catch(err => {
-    console.error('MongoDB connection error:', err);
+    console.error('MongoDB bağlantı hatası:', err);
   });
 
 // Veritabanı adı "Matches" olarak belirtiyoruz
